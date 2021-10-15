@@ -2,6 +2,8 @@ package com.softmei.notification.service;
 
 import com.softmei.notification.dto.request.EmailRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -25,16 +27,15 @@ public class EmailService {
     public void sendEmail(String remetente,
                            List<String> destinatarios, String assunto, String mensagem) {
         try {
-            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            SimpleMailMessage message = new SimpleMailMessage();
 
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
-            helper.setFrom(remetente);
-            helper.setTo(destinatarios.toArray(new String[destinatarios.size()]));
-            helper.setSubject(assunto);
-            helper.setText(mensagem, true);
+            message.setFrom(remetente);
+            message.setTo(destinatarios.toArray(new String[destinatarios.size()]));
+            message.setSubject(assunto);
+            message.setText(mensagem);
 
-            mailSender.send(mimeMessage);
-        } catch (MessagingException e) {
+            mailSender.send(message);
+        } catch (MailException e) {
             throw new RuntimeException("Problemas com o envio de e-mail!", e);
         }
     }
