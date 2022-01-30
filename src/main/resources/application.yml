@@ -1,23 +1,23 @@
 server:
   port: 8081
-
 spring:
-  application:
-    name: notification
-  mail:
-    port: 587
-    host: smtp.gmail.com
-    username: contatosoftmei
-    password: omlhcphesaftaohq
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-  rabbitmq:
-    addresses: amqps://sfgnxffo:eztsOYNNEscmuWotCPfcbIZYUC16bm25@beaver.rmq.cloudamqp.com/sfgnxffo
-    queue: ms.email
+  config:
+    import: optional:configserver:http://localhost:8888/notification
+
+#  mail:
+#    port: 587
+#    host: smtp.gmail.com
+#    username: contatosoftmei
+#    password: omlhcphesaftaohq
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#  rabbitmq:
+#    addresses: amqps://sfgnxffo:eztsOYNNEscmuWotCPfcbIZYUC16bm25@beaver.rmq.cloudamqp.com/sfgnxffo
+#    queue: ms.email
 
 eureka:
   client:
