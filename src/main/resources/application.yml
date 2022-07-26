@@ -16,7 +16,7 @@ spring:
 #    port: 587
 #    host: smtp.gmail.com
 #    username: contatosoftmei
-#    password: omlhcphesaftaohq
+#    password: ${password}
 #    properties:
 #      mail:
 #        smtp:
